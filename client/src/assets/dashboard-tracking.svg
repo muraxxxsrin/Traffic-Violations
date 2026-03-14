@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="108" y1="82" x2="802" y2="638" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#1E3A5F"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="white" stop-opacity=".96"/>
+      <stop offset="1" stop-color="#E8F0F8" stop-opacity=".94"/>
+    </linearGradient>
+    <linearGradient id="chart" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#14B8A6"/>
+      <stop offset="1" stop-color="#0F766E"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FF8A65"/>
+      <stop offset="1" stop-color="#F97316"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="700" rx="44" fill="url(#bg)"/>
+  <circle cx="715" cy="132" r="160" fill="#14B8A6" fill-opacity=".12"/>
+  <circle cx="154" cy="614" r="180" fill="#FF8A65" fill-opacity=".10"/>
+
+  <rect x="58" y="58" width="784" height="584" rx="34" fill="white" fill-opacity=".08" stroke="white" stroke-opacity=".15"/>
+
+  <rect x="96" y="96" width="708" height="508" rx="28" fill="url(#panel)"/>
+  <rect x="96" y="96" width="708" height="74" rx="28" fill="#F8FBFF"/>
+  <circle cx="132" cy="133" r="9" fill="#FF8A65"/>
+  <circle cx="160" cy="133" r="9" fill="#FBBF24"/>
+  <circle cx="188" cy="133" r="9" fill="#34D399"/>
+  <rect x="230" y="118" width="182" height="28" rx="14" fill="#E5EEF8"/>
+  <rect x="612" y="116" width="154" height="32" rx="16" fill="#ECFDF5"/>
+  <rect x="628" y="126" width="64" height="12" rx="6" fill="#10B981"/>
+  <rect x="702" y="126" width="42" height="12" rx="6" fill="#A7F3D0"/>
+
+  <text x="132" y="214" fill="#0F172A" font-family="Arial, sans-serif" font-size="34" font-weight="700">Dashboard Tracking</text>
+  <text x="132" y="246" fill="#64748B" font-family="Arial, sans-serif" font-size="18">Monitor paid, unpaid, and recent challans in one place</text>
+
+  <rect x="132" y="284" width="184" height="108" rx="24" fill="#F8FAFC"/>
+  <rect x="338" y="284" width="184" height="108" rx="24" fill="#EEFDF7"/>
+  <rect x="544" y="284" width="184" height="108" rx="24" fill="#FFF4F1"/>
+
+  <text x="160" y="322" fill="#94A3B8" font-family="Arial, sans-serif" font-size="15" font-weight="700">TOTAL CHALLANS</text>
+  <text x="160" y="368" fill="#0F172A" font-family="Arial, sans-serif" font-size="34" font-weight="700">128</text>
+
+  <text x="366" y="322" fill="#0F766E" font-family="Arial, sans-serif" font-size="15" font-weight="700">PAID</text>
+  <text x="366" y="368" fill="#065F46" font-family="Arial, sans-serif" font-size="34" font-weight="700">92</text>
+
+  <text x="572" y="322" fill="#EA580C" font-family="Arial, sans-serif" font-size="15" font-weight="700">UNPAID</text>
+  <text x="572" y="368" fill="#9A3412" font-family="Arial, sans-serif" font-size="34" font-weight="700">36</text>
+
+  <rect x="132" y="420" width="412" height="146" rx="28" fill="#F8FAFC"/>
+  <text x="160" y="456" fill="#0F172A" font-family="Arial, sans-serif" font-size="20" font-weight="700">Violation Trend</text>
+  <rect x="166" y="510" width="44" height="26" rx="12" fill="url(#accent)"/>
+  <rect x="228" y="478" width="44" height="58" rx="12" fill="url(#chart)"/>
+  <rect x="290" y="450" width="44" height="86" rx="12" fill="url(#accent)"/>
+  <rect x="352" y="466" width="44" height="70" rx="12" fill="url(#chart)"/>
+  <rect x="414" y="428" width="44" height="108" rx="12" fill="url(#accent)"/>
+  <rect x="476" y="486" width="44" height="50" rx="12" fill="url(#chart)"/>
+
+  <rect x="568" y="420" width="160" height="146" rx="28" fill="#0F172A"/>
+  <text x="592" y="456" fill="white" font-family="Arial, sans-serif" font-size="20" font-weight="700">Recent Case</text>
+  <rect x="592" y="478" width="112" height="12" rx="6" fill="white" fill-opacity=".18"/>
+  <rect x="592" y="502" width="84" height="12" rx="6" fill="white" fill-opacity=".18"/>
+  <rect x="592" y="534" width="90" height="32" rx="16" fill="#14B8A6"/>
+  <text x="615" y="555" fill="white" font-family="Arial, sans-serif" font-size="15" font-weight="700">Paid</text>
+</svg>

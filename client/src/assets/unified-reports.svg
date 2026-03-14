@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="96" y1="78" x2="824" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F766E"/>
+      <stop offset="1" stop-color="#14B8A6"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="white" stop-opacity=".96"/>
+      <stop offset="1" stop-color="#EDFDFC" stop-opacity=".94"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="700" rx="44" fill="url(#bg)"/>
+  <circle cx="748" cy="122" r="158" fill="white" fill-opacity=".10"/>
+  <circle cx="152" cy="604" r="170" fill="#A7F3D0" fill-opacity=".16"/>
+
+  <rect x="76" y="72" width="748" height="556" rx="34" fill="white" fill-opacity=".08" stroke="white" stroke-opacity=".18"/>
+  <rect x="104" y="102" width="692" height="496" rx="28" fill="url(#panel)"/>
+
+  <text x="142" y="158" fill="#111827" font-family="Arial, sans-serif" font-size="34" font-weight="700">Unified Reports</text>
+  <text x="142" y="190" fill="#64748B" font-family="Arial, sans-serif" font-size="18">Evidence, amount, status, and contact details in one record view</text>
+
+  <rect x="142" y="228" width="356" height="300" rx="26" fill="#F8FAFC"/>
+  <rect x="526" y="228" width="232" height="300" rx="26" fill="#E6FFFB"/>
+
+  <rect x="172" y="258" width="120" height="32" rx="16" fill="#0F172A"/>
+  <text x="198" y="280" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="700">PAID</text>
+
+  <text x="172" y="330" fill="#94A3B8" font-family="Arial, sans-serif" font-size="14" font-weight="700">VIOLATION</text>
+  <text x="172" y="366" fill="#111827" font-family="Arial, sans-serif" font-size="30" font-weight="700">no_seatbelt</text>
+
+  <rect x="172" y="396" width="138" height="92" rx="20" fill="white"/>
+  <rect x="330" y="396" width="138" height="92" rx="20" fill="white"/>
+  <text x="194" y="426" fill="#94A3B8" font-family="Arial, sans-serif" font-size="12" font-weight="700">AMOUNT</text>
+  <text x="194" y="462" fill="#111827" font-family="Arial, sans-serif" font-size="28" font-weight="700">Rs.1000</text>
+  <text x="352" y="426" fill="#94A3B8" font-family="Arial, sans-serif" font-size="12" font-weight="700">PHONE</text>
+  <text x="352" y="462" fill="#111827" font-family="Arial, sans-serif" font-size="28" font-weight="700">9344...</text>
+
+  <rect x="556" y="258" width="172" height="172" rx="24" fill="white"/>
+  <rect x="584" y="286" width="116" height="116" rx="16" fill="#D1FAE5"/>
+  <rect x="620" y="316" width="44" height="56" rx="8" fill="none" stroke="#10B981" stroke-width="6"/>
+  <text x="586" y="470" fill="#0F766E" font-family="Arial, sans-serif" font-size="18" font-weight="700">Evidence Linked</text>
+
+  <rect x="142" y="552" width="616" height="18" rx="9" fill="rgba(15,118,110,.12)"/>
+  <rect x="142" y="552" width="422" height="18" rx="9" fill="rgba(15,118,110,.46)"/>
+</svg>

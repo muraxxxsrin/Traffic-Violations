@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="104" y1="80" x2="804" y2="638" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="white" stop-opacity=".96"/>
+      <stop offset="1" stop-color="#EEF2FF" stop-opacity=".94"/>
+    </linearGradient>
+    <linearGradient id="token" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="700" rx="44" fill="url(#bg)"/>
+  <circle cx="722" cy="126" r="154" fill="#60A5FA" fill-opacity=".12"/>
+  <circle cx="162" cy="590" r="180" fill="#22C55E" fill-opacity=".08"/>
+
+  <rect x="88" y="84" width="724" height="532" rx="34" fill="white" fill-opacity=".08" stroke="white" stroke-opacity=".16"/>
+  <rect x="122" y="116" width="656" height="468" rx="30" fill="url(#panel)"/>
+
+  <text x="162" y="174" fill="#0F172A" font-family="Arial, sans-serif" font-size="34" font-weight="700">Secure Access</text>
+  <text x="162" y="206" fill="#64748B" font-family="Arial, sans-serif" font-size="18">Password-protected sign in with token-based authorization</text>
+
+  <rect x="162" y="246" width="290" height="280" rx="28" fill="#F8FAFC"/>
+  <rect x="198" y="284" width="218" height="44" rx="18" fill="white" stroke="#CBD5E1"/>
+  <rect x="198" y="350" width="218" height="44" rx="18" fill="white" stroke="#CBD5E1"/>
+  <text x="220" y="312" fill="#94A3B8" font-family="Arial, sans-serif" font-size="16">Email address</text>
+  <text x="220" y="378" fill="#94A3B8" font-family="Arial, sans-serif" font-size="16">Password protected</text>
+  <rect x="198" y="432" width="164" height="42" rx="21" fill="#111827"/>
+  <text x="243" y="459" fill="white" font-family="Arial, sans-serif" font-size="17" font-weight="700">Sign In</text>
+
+  <rect x="488" y="246" width="250" height="280" rx="28" fill="#EFF6FF"/>
+  <rect x="526" y="286" width="174" height="46" rx="18" fill="url(#token)"/>
+  <text x="555" y="316" fill="white" font-family="Arial, sans-serif" font-size="17" font-weight="700">JWT TOKEN</text>
+  <rect x="526" y="360" width="174" height="16" rx="8" fill="#BFDBFE"/>
+  <rect x="526" y="388" width="154" height="16" rx="8" fill="#BFDBFE"/>
+  <rect x="526" y="416" width="138" height="16" rx="8" fill="#BFDBFE"/>
+  <circle cx="612" cy="470" r="38" fill="#DBEAFE"/>
+  <path d="M612 448C602 448 594 456 594 466V478H630V466C630 456 622 448 612 448Z" fill="#2563EB"/>
+  <rect x="600" y="478" width="24" height="32" rx="8" fill="#2563EB"/>
+  <circle cx="612" cy="492" r="5" fill="white"/>
+
+  <rect x="162" y="548" width="576" height="16" rx="8" fill="rgba(96,165,250,.12)"/>
+  <rect x="162" y="548" width="332" height="16" rx="8" fill="rgba(37,99,235,.5)"/>
+</svg>

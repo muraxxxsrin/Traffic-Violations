@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="82" y1="54" x2="824" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF8A65"/>
+      <stop offset="1" stop-color="#F97316"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="white" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#FFF7F3" stop-opacity=".94"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="700" rx="44" fill="url(#bg)"/>
+  <circle cx="718" cy="118" r="150" fill="white" fill-opacity=".10"/>
+  <circle cx="144" cy="586" r="170" fill="#FED7AA" fill-opacity=".18"/>
+
+  <rect x="74" y="70" width="752" height="560" rx="34" fill="white" fill-opacity=".08" stroke="white" stroke-opacity=".2"/>
+  <rect x="104" y="102" width="692" height="496" rx="28" fill="url(#panel)"/>
+
+  <text x="144" y="160" fill="#111827" font-family="Arial, sans-serif" font-size="34" font-weight="700">Smart Search</text>
+  <text x="144" y="192" fill="#6B7280" font-family="Arial, sans-serif" font-size="18">Find challans instantly using multiple identifiers</text>
+
+  <rect x="144" y="230" width="612" height="72" rx="26" fill="white" stroke="#FDBA74" stroke-width="2"/>
+  <circle cx="188" cy="266" r="16" stroke="#F97316" stroke-width="4"/>
+  <path d="M199 277L217 295" stroke="#F97316" stroke-width="4" stroke-linecap="round"/>
+  <text x="230" y="275" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="24">Search by challan, vehicle, or phone number</text>
+
+  <rect x="144" y="336" width="188" height="168" rx="24" fill="#FFF7ED"/>
+  <rect x="364" y="336" width="188" height="168" rx="24" fill="#FFF7ED"/>
+  <rect x="584" y="336" width="172" height="168" rx="24" fill="#FFF7ED"/>
+
+  <text x="172" y="380" fill="#F97316" font-family="Arial, sans-serif" font-size="15" font-weight="700">CHALLAN NUMBER</text>
+  <text x="172" y="430" fill="#111827" font-family="Arial, sans-serif" font-size="30" font-weight="700">SIST7E65...</text>
+
+  <text x="392" y="380" fill="#F97316" font-family="Arial, sans-serif" font-size="15" font-weight="700">VEHICLE NUMBER</text>
+  <text x="392" y="430" fill="#111827" font-family="Arial, sans-serif" font-size="30" font-weight="700">TN03X4375</text>
+
+  <text x="612" y="380" fill="#F97316" font-family="Arial, sans-serif" font-size="15" font-weight="700">PHONE</text>
+  <text x="612" y="430" fill="#111827" font-family="Arial, sans-serif" font-size="30" font-weight="700">9344...</text>
+
+  <rect x="144" y="534" width="612" height="30" rx="15" fill="rgba(249,115,22,.12)"/>
+  <rect x="144" y="534" width="318" height="30" rx="15" fill="rgba(249,115,22,.48)"/>
+</svg>
