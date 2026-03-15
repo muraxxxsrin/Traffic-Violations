@@ -5,6 +5,7 @@ import { Button } from "../../../components/ui/Button";
 import { Input } from "../../../components/ui/Input";
 import { Label } from "../../../components/ui/Label";
 import { useToast } from "../../../lib/toast";
+import { API_BASE_URL } from "../../../lib/api";
 
 export default function SignUpPage({ onNavigate, onAuthSuccess }) {
   const { showToast } = useToast();
@@ -32,7 +33,7 @@ export default function SignUpPage({ onNavigate, onAuthSuccess }) {
     setIsSubmitting(true);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/signup", {
+      const res = await axios.post(`${API_BASE_URL}/api/auth/signup`, {
         name: form.name,
         email: form.email,
         phoneNumber: form.phoneNumber,

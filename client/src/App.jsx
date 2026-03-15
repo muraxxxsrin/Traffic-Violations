@@ -13,6 +13,7 @@ import { useChallanSearch } from "./features/challan/hooks/useChallanSearch";
 import { downloadChallanReport } from "./features/challan/utils/challanReport";
 import axios from "axios";
 import { useToast } from "./lib/toast";
+import { API_BASE_URL } from "./lib/api";
 import "./styles/app.css";
 
 function App() {
@@ -47,7 +48,7 @@ function App() {
             },
           }
         : undefined;
-      const res = await axios.get(`http://localhost:5000/api/challan/user/${user.phoneNumber}`, requestConfig);
+      const res = await axios.get(`${API_BASE_URL}/api/challan/user/${user.phoneNumber}`, requestConfig);
       setUserChallans(res.data);
     } catch (error) {
       if (error.response?.status === 404) {

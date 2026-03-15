@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import { createCaptcha } from "../utils/captcha";
 import { useToast } from "../../../lib/toast";
+import { API_BASE_URL } from "../../../lib/api";
 
 export function useChallanSearch({ onSearchSuccess, onPaymentSuccess } = {}) {
   const { showToast } = useToast();
@@ -32,7 +33,7 @@ export function useChallanSearch({ onSearchSuccess, onPaymentSuccess } = {}) {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/challan/search", {
+      const res = await axios.post(`${API_BASE_URL}/api/challan/search`, {
         type,
         value,
       });
@@ -59,7 +60,7 @@ export function useChallanSearch({ onSearchSuccess, onPaymentSuccess } = {}) {
     if (!currentPaymentChallan) return;
 
     try {
-      const res = await axios.post("http://localhost:5000/api/challan/simulate-payment", {
+      const res = await axios.post(`${API_BASE_URL}/api/challan/simulate-payment`, {
         challan_id: currentPaymentChallan.challan_id,
       });
 

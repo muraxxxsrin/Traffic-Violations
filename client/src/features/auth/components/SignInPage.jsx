@@ -5,6 +5,7 @@ import { Button } from "../../../components/ui/Button";
 import { Input } from "../../../components/ui/Input";
 import { Label } from "../../../components/ui/Label";
 import { useToast } from "../../../lib/toast";
+import { API_BASE_URL } from "../../../lib/api";
 
 export default function SignInPage({ onNavigate, onAuthSuccess }) {
   const { showToast } = useToast();
@@ -20,7 +21,7 @@ export default function SignInPage({ onNavigate, onAuthSuccess }) {
     setIsSubmitting(true);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/signin", form);
+      const res = await axios.post(`${API_BASE_URL}/api/auth/signin`, form);
       showToast(res.data.message || "Signed in successfully.", "success", "top-right");
       onAuthSuccess?.(res.data);
       onNavigate?.("/dashboard");
