@@ -5,6 +5,11 @@ import authToken from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
+function logDuration(label, startTime, details = {}) {
+  const durationMs = Date.now() - startTime;
+  console.log(`[timing] ${label} completed in ${durationMs}ms`, details);
+}
+
 async function findChallans(query) {
   return Violation.aggregate([
     { $match: query },
@@ -63,20 +68,36 @@ router.post("/search", async (req, res) => {
 });
 
 router.get("/user/:phoneNumber", authToken, async (req, res) => {
+  const requestStart = Date.now();
   try {
+    const signedInUserLookupStart = Date.now();
     const signedInUser = await User.findById(req.user.id).select("phoneNumber");
+    logDuration("challan.user.findSignedInUser", signedInUserLookupStart, { userId: req.user.id });
 
     if (!signedInUser) {
+      logDuration("challan.user.total", requestStart, { status: 401, userId: req.user.id });
       return res.status(401).json({ message: "Unauthorized" });
     }
 
     if (signedInUser.phoneNumber !== req.params.phoneNumber) {
+      logDuration("challan.user.total", requestStart, { status: 403, userId: req.user.id });
       return res.status(403).json({ message: "Forbidden" });
     }
 
+    const challanLookupStart = Date.now();
     const challans = await findChallans({ phone_number: req.params.phoneNumber });
+    logDuration("challan.user.findChallans", challanLookupStart, {
+      phoneNumber: req.params.phoneNumber,
+      count: challans.length,
+    });
+    logDuration("challan.user.total", requestStart, {
+      status: 200,
+      phoneNumber: req.params.phoneNumber,
+      count: challans.length,
+    });
     return res.status(200).json(challans);
   } catch (error) {
+    logDuration("challan.user.total", requestStart, { status: 500, error: error.message });
     return res.status(500).json({ message: "Unable to fetch user challans.", error: error.message });
   }
 });

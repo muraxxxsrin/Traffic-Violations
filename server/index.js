@@ -8,17 +8,31 @@ import authRoutes from "./routes/auth.js";
 dotenv.config();
 
 const app = express();
+const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO_URI)
-    .then((conn) => console.log(`MongoDB Connected to host: ${conn.connection.host}`))
-    .catch(err => console.log(err));
-
 app.use("/api/challan", challanRoutes);
 app.use("/api/auth", authRoutes);
 
-app.listen(process.env.PORT, () =>
-    console.log(`Server running on port ${process.env.PORT}`)
-);
+mongoose.set("bufferCommands", false);
+
+async function startServer() {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URI, {
+      serverSelectionTimeoutMS: 5000,
+    });
+
+    console.log(`MongoDB Connected to host: ${conn.connection.host}`);
+
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+  } catch (error) {
+    console.error("Failed to connect to MongoDB:", error.message);
+    process.exit(1);
+  }
+}
+
+startServer();

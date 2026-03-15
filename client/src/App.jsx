@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Header from "./components/layout/Header";
 import NoticeBoard from "./features/challan/components/NoticeBoard";
 import PaymentModal from "./features/challan/components/PaymentModal";
@@ -26,6 +26,7 @@ function App() {
   const [authToken, setAuthToken] = useState(() => window.localStorage.getItem("redlight-token"));
   const [userChallans, setUserChallans] = useState([]);
   const [isUserChallansLoading, setIsUserChallansLoading] = useState(false);
+  const skipNextUserFetchRef = useRef(false);
 
   const navigate = (path, { replace = false } = {}) => {
     const method = replace ? "replaceState" : "pushState";
@@ -71,6 +72,7 @@ function App() {
       setAuthToken(token);
       window.localStorage.setItem("redlight-token", token);
     }
+    skipNextUserFetchRef.current = true;
     fetchUserChallans(user, token);
   };
 
@@ -94,6 +96,10 @@ function App() {
 
   useEffect(() => {
     if (currentUser?.phoneNumber) {
+      if (skipNextUserFetchRef.current) {
+        skipNextUserFetchRef.current = false;
+        return;
+      }
       fetchUserChallans(currentUser);
     }
   }, [currentUser, fetchUserChallans]);
