@@ -4,7 +4,7 @@ import { createCaptcha } from "../utils/captcha";
 import { useToast } from "../../../lib/toast";
 import { API_BASE_URL } from "../../../lib/api";
 
-export function useChallanSearch({ onSearchSuccess, onPaymentSuccess } = {}) {
+export function useChallanSearch({ onSearchSuccess, onPaymentSuccess, executeAuthenticatedRequest } = {}) {
   const { showToast } = useToast();
   const [type, setType] = useState("challan");
   const [value, setValue] = useState("");
@@ -60,9 +60,24 @@ export function useChallanSearch({ onSearchSuccess, onPaymentSuccess } = {}) {
     if (!currentPaymentChallan) return;
 
     try {
-      const res = await axios.post(`${API_BASE_URL}/api/challan/simulate-payment`, {
-        challan_id: currentPaymentChallan.challan_id,
-      });
+      if (!executeAuthenticatedRequest) {
+        showToast("Please sign in to pay a challan.", "error", "top-right");
+        return;
+      }
+
+      const res = await executeAuthenticatedRequest((token) =>
+        axios.post(
+          `${API_BASE_URL}/api/challan/simulate-payment`,
+          {
+            challan_id: currentPaymentChallan.challan_id,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+      );
 
       if (res.status === 200) {
         showToast("Payment Processed Successfully!", "success", "top-right");
@@ -73,8 +88,14 @@ export function useChallanSearch({ onSearchSuccess, onPaymentSuccess } = {}) {
           await handleSearch();
         }
       }
-    } catch {
-      showToast("Payment failed. Please try again.", "error", "top-right");
+    } catch (error) {
+      if (error.response?.status === 403) {
+        showToast("You are not allowed to pay this challan.", "error", "top-right");
+      } else if (error.response?.status === 404) {
+        showToast("Challan not found.", "error", "top-right");
+      } else if (error.response?.status !== 401) {
+        showToast("Payment failed. Please try again.", "error", "top-right");
+      }
     }
   };
 

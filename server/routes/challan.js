@@ -40,6 +40,20 @@ async function findChallans(query) {
   ]);
 }
 
+async function findSignedInUser(req, res, requestStart, routeLabel) {
+  const signedInUserLookupStart = Date.now();
+  const signedInUser = await User.findById(req.user.id).select("phoneNumber");
+  logDuration(`${routeLabel}.findSignedInUser`, signedInUserLookupStart, { userId: req.user.id });
+
+  if (!signedInUser) {
+    logDuration(`${routeLabel}.total`, requestStart, { status: 401, userId: req.user.id });
+    res.status(401).json({ message: "Unauthorized" });
+    return null;
+  }
+
+  return signedInUser;
+}
+
 // LOGIN / VERIFY CHALLAN
 router.post("/search", async (req, res) => {
   const { type, value } = req.body;
@@ -70,14 +84,8 @@ router.post("/search", async (req, res) => {
 router.get("/user/:phoneNumber", authToken, async (req, res) => {
   const requestStart = Date.now();
   try {
-    const signedInUserLookupStart = Date.now();
-    const signedInUser = await User.findById(req.user.id).select("phoneNumber");
-    logDuration("challan.user.findSignedInUser", signedInUserLookupStart, { userId: req.user.id });
-
-    if (!signedInUser) {
-      logDuration("challan.user.total", requestStart, { status: 401, userId: req.user.id });
-      return res.status(401).json({ message: "Unauthorized" });
-    }
+    const signedInUser = await findSignedInUser(req, res, requestStart, "challan.user");
+    if (!signedInUser) return;
 
     if (signedInUser.phoneNumber !== req.params.phoneNumber) {
       logDuration("challan.user.total", requestStart, { status: 403, userId: req.user.id });
@@ -102,8 +110,28 @@ router.get("/user/:phoneNumber", authToken, async (req, res) => {
   }
 });
 // PAY CHALLAN
-router.put("/pay/:id", async (req, res) => {
+router.put("/pay/:id", authToken, async (req, res) => {
+  const requestStart = Date.now();
   try {
+    const signedInUser = await findSignedInUser(req, res, requestStart, "challan.pay");
+    if (!signedInUser) return;
+
+    const existingChallan = await Violation.findOne({ challan_id: req.params.id }).lean();
+
+    if (!existingChallan) {
+      logDuration("challan.pay.total", requestStart, { status: 404, challanId: req.params.id });
+      return res.status(404).json({ message: "Challan not found" });
+    }
+
+    if (existingChallan.phone_number !== signedInUser.phoneNumber) {
+      logDuration("challan.pay.total", requestStart, {
+        status: 403,
+        userId: req.user.id,
+        challanId: req.params.id,
+      });
+      return res.status(403).json({ message: "Forbidden" });
+    }
+
     const challan = await Violation.findOneAndUpdate(
       { challan_id: req.params.id },
       {
@@ -114,16 +142,37 @@ router.put("/pay/:id", async (req, res) => {
       { new: true }
     );
 
+    logDuration("challan.pay.total", requestStart, { status: 200, challanId: req.params.id });
     res.json(challan);
   } catch (err) {
+    logDuration("challan.pay.total", requestStart, { status: 500, error: err.message });
     res.status(500).json({ error: err.message });
   }
 });
 
 // SIMULATE PAYMENT
-router.post("/simulate-payment", async (req, res) => {
+router.post("/simulate-payment", authToken, async (req, res) => {
+  const requestStart = Date.now();
   try {
+    const signedInUser = await findSignedInUser(req, res, requestStart, "challan.simulatePayment");
+    if (!signedInUser) return;
+
     const { challan_id } = req.body;
+    const existingChallan = await Violation.findOne({ challan_id }).lean();
+
+    if (!existingChallan) {
+      logDuration("challan.simulatePayment.total", requestStart, { status: 404, challanId: challan_id });
+      return res.status(404).json({ message: "Challan not found in database" });
+    }
+
+    if (existingChallan.phone_number !== signedInUser.phoneNumber) {
+      logDuration("challan.simulatePayment.total", requestStart, {
+        status: 403,
+        userId: req.user.id,
+        challanId: challan_id,
+      });
+      return res.status(403).json({ message: "Forbidden" });
+    }
 
     // Generate a fake payment transaction ID containing ONLY numbers
     const fake_payment_id = Math.floor(100000000000 + Math.random() * 900000000000).toString();
@@ -139,10 +188,12 @@ router.post("/simulate-payment", async (req, res) => {
       },
       { new: true }
     );
-    if (!challan) {
-      return res.status(404).json({ message: "Challan not found in database" });
-    }
 
+    logDuration("challan.simulatePayment.total", requestStart, {
+      status: 200,
+      challanId: challan_id,
+      userId: req.user.id,
+    });
     return res.status(200).json({
       message: "Mock payment verified successfully",
       challan: challan,
@@ -150,6 +201,7 @@ router.post("/simulate-payment", async (req, res) => {
     });
 
   } catch (error) {
+    logDuration("challan.simulatePayment.total", requestStart, { status: 500, error: error.message });
     res.status(500).json({ message: "Internal Server Error!" });
     console.log(error);
   }
