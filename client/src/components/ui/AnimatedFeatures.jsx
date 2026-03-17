@@ -3,7 +3,7 @@ import { AnimatePresence, motion as Motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "../../lib/utils";
 
-export function AnimatedTestimonials({
+export function AnimatedFeatures({
   testimonials,
   autoplay = false,
   className,
@@ -143,4 +143,4 @@ export function AnimatedTestimonials({
   );
 }
 
-export default AnimatedTestimonials;
+export default AnimatedFeatures;

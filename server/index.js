@@ -9,7 +9,7 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
-console.log("JWT loaded?", Boolean(process.env.JWT_SECRET));
+console.log("JWT loaded:", Boolean(process.env.JWT_SECRET));
 
 app.use(cors());
 app.use(express.json());

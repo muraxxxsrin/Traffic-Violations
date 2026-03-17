@@ -1,6 +1,6 @@
 import React from "react";
 import { FileText, MessageCircleMore } from "lucide-react";
-import AnimatedTestimonials from "../../../components/ui/AnimatedTestimonials";
+import AnimatedFeatures from "../../../components/ui/AnimatedFeatures";
 import smartSearchImage from "../../../assets/smart-search.svg";
 import unifiedReportsImage from "../../../assets/unified-reports.svg";
 import dashboardTrackingImage from "../../../assets/dashboard-tracking.svg";
@@ -67,7 +67,7 @@ export default function FeaturesPage() {
 
       <div className="features-page__layout">
         <div className="features-page__showcase">
-          <AnimatedTestimonials testimonials={FEATURE_SLIDES} autoplay className="features-page__slider" />
+          <AnimatedFeatures testimonials={FEATURE_SLIDES} autoplay className="features-page__slider" />
         </div>
 
         <div className="features-page__cards">
